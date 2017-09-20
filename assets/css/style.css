@@ -1,0 +1,51 @@
+h1,
+h2,
+h3,
+label,
+th,
+td {
+  font-weight: 700;
+  font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: url("../images/clouds.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+button,
+form,
+input {
+  margin: 10px;
+  padding-top: 5px;
+}
+
+@font-face {
+  font-family: HARRYP__;
+  src: url(HARRYP__.TTF);
+}
+
+h1, .correctText {
+  font-family: HARRYP__;
+  padding-bottom: 20px;
+  font-size: 40px;
+  line-height: 49px;
+  border-bottom: 3px solid #ddd;
+}
+
+h2 {
+  font-size:30px;	
+}
+
+.jumbotron {
+	background: url("../images/HogwartsExpress.png");
+  background-size: 100% auto;
+	background-repeat: no-repeat;
+  padding: 20px;
+}
+
+footer {
+  font-family: HARRYP__;
+}
