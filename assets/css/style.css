@@ -40,10 +40,21 @@ h2 {
 }
 
 .jumbotron {
-	background: url("../images/nine.jpg");
-  background-size: auto 100%;
-	/*background-repeat: no-repeat;*/
+	background: url("../images/trainhigherres.jpg");
+  background-size: 100% auto;
+	background-repeat: no-repeat;
+  background-position: 50% 20%;
   padding: 20px;
+  min-height: 20vw;
+}
+
+.remove-train {
+  margin: 0px;
+}
+
+.panel-body {
+  max-width: 100%;
+  overflow-x: scroll;
 }
 
 footer {

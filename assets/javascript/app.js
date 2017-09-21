@@ -67,6 +67,8 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   console.log(trainRate);
  
   var diffTime = moment().diff(moment.unix(trainStart), "minutes");
+  var momentTravis = moment().format("X");
+
   var timeRemainder = moment().diff(moment.unix(trainStart), "minutes") % trainRate;
   var minutes = trainRate - timeRemainder;
 
@@ -74,12 +76,19 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   var nextTrainArrival = moment().add(minutes, "m").format("hh:mm A"); 
   
   // Add each train's data into the table
-  $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDest + "</td><td>" +
-  trainRate + "</td><td>" + nextTrainArrival + "</td><td>" + minutes + "</td><td>" + 
-  "<input type='submit' value='remove train' class='remove-train btn btn-primary btn-sm'>" + "</td></tr>");
+  $("#train-table > tbody")
+    .append($("<tr>").data('id', childSnapshot.key)
+      .append($("<td>").text(trainName))
+      .append($("<td>" + trainDest + "</td>"))
+      .append($("<td>" + trainRate + "</td>"))
+      .append($("<td>" + nextTrainArrival + "</td>"))
+      .append($("<td>" + minutes + "</td>"))
+      .append($("<td>")
+        .append($("<input type='submit' value='remove train' class='remove-train btn btn-primary btn-sm'>"))
+      ));
 });
 
 $("body").on("click", ".remove-train", function() {
      $(this).closest ('tr').remove();
-
+     database.ref($(this).data('id')).remove(); // use id on create, append to button
 });
