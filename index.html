@@ -6,26 +6,22 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css">
+  <!-- Animate -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/> -->
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <!-- JQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
   <!-- Moment.js Reference -->
   <!-- <script src="http://momentjs.com/downloads/moment.js"></script> -->
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
-    <!-- LINK TO FIREBASE GOES HERE -->
+    <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-
 </head>
 <body>
-  
-   <!-- JUMBO -->
+  <!-- JUMBO -->
   <div class="jumbotron">
       <h1 class="animated zoomIn">King's Cross Station</h1>
       <p>All Aboard for an adventure of a lifetime...</p>
@@ -35,6 +31,30 @@
   <div class="container input-container">
     <div class="row">
       
+      <!-- Current Train Schedule-->
+     <div class="col-lg-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Current Train Schedule</strong></h3>
+        </div>
+        <div class="panel-body" id="trainSchedule">
+          <table class="table table-hover" id="train-table">
+            <thead>
+              <tr>
+                <th>Train #</th>
+                <th>Destination</th>
+                <th>Frequency (min)</th>
+                <th>Next Arrival</th>
+                <th>Minutes Away</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
       <!-- Setup Train Schedule-->
       <div class="col-lg-12">
         <div class="panel panel-primary">
@@ -43,7 +63,7 @@
           </div>    
           
           <!-- Sign-up Form (note various input "types")-->
-          <div class="panel-body">
+          <div class="panel-body" id="signUpForm">
             <form role="form">              
               <div class="form-group">
                 <label for="text">Train Number</label>
@@ -60,33 +80,24 @@
               <div class="form-group">
                 <label for="comment">Frequency (min)</label>
                 <!-- <input type="text" class="form-control" id="frequency-input"> -->
-                <input type="range" min="15" max="120" class="form-control" id="frequency-input">
+                <input type="range" min="0" max="150" list="tickmarks" class="form-control" id="frequency-input">
+                  <datalist id="tickmarks">
+                    <option value="0" label="0%">
+                    <option value="15">
+                    <option value="30">
+                    <option value="45">
+                    <option value="60">
+                    <option value="75" label="50%">
+                    <option value="90">
+                    <option value="105">
+                    <option value="120">
+                    <option value="135">
+                    <option value="150" label="100%">
+                  </datalist>
               </div>              
               <button type="submit" class="btn btn-primary" id="add-trainSchedule-btn">Aparecium</button>            
             </form>
           </div>
-        </div>
-      </div>
-
-      <!-- Current Train Schedule-->
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title"><strong>Current Train Schedule</strong></h3>
-        </div>
-        <div class="panel-body">
-          <table class="table table-hover" id='train-table'>
-            <thead>
-              <tr>
-                <th>Train Number</th>
-                <th>Destination</th>
-                <th>Frequency (min)</th>
-                <th>Next Arrival</th>
-                <th>Minutes Away</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
         </div>
       </div>
 

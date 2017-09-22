@@ -4,7 +4,7 @@ h3,
 label,
 th,
 td {
-  font-weight: 700;
+  font-weight: 400;
   font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
@@ -49,10 +49,11 @@ h2 {
 }
 
 .remove-train {
-  margin: 0px;
+  margin-top: 0px;
+  border-top: 0px;
 }
 
-.panel-body {
+#trainSchedule {
   max-width: 100%;
   overflow-x: scroll;
 }

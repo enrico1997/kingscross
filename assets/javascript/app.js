@@ -63,13 +63,14 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   // Console log during DB read
   console.log(trainName);
   console.log(trainDest);
-  console.log(trainStart);
-  console.log(trainRate);
- 
-  var diffTime = moment().diff(moment.unix(trainStart), "minutes");
-  var momentTravis = moment().format("X");
+  console.log("FirstTrain time: " + trainStart);
+  console.log("Train comes along (min): " + trainRate);
+  console.log("Current time: " + moment().format("X"));
 
-  var timeRemainder = moment().diff(moment.unix(trainStart), "minutes") % trainRate;
+  // Subtract current epoch time with first train epoch time then convert difference to minutes
+  // Take modulus vs. frequency of train arrival to obtain remainder 
+  // Subtract result from train frequency to get "minutes away" value
+  var timeRemainder = moment().diff(moment.unix(trainStart), "minutes") % trainRate; 
   var minutes = trainRate - timeRemainder;
 
   // Prettify the next train start
@@ -77,7 +78,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   
   // Add each train's data into the table
   $("#train-table > tbody")
-    .append($("<tr>").data('id', childSnapshot.key)
+    .append($("<tr>").data("id", childSnapshot.key)
       .append($("<td>").text(trainName))
       .append($("<td>" + trainDest + "</td>"))
       .append($("<td>" + trainRate + "</td>"))
@@ -89,6 +90,6 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 });
 
 $("body").on("click", ".remove-train", function() {
-     $(this).closest ('tr').remove();
-     database.ref($(this).data('id')).remove(); // use id on create, append to button
+     $(this).closest("tr").remove();
+     database.ref($(this).data("id")).remove(); // use id on create, append to button
 });
