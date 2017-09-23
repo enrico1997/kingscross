@@ -13,7 +13,7 @@ var database = firebase.database();
 
 // 2. Button for adding Train Schedule
 $("#add-trainSchedule-btn").on("click", function(event) {
-  event.preventDefault();
+  event.preventDefault()
 
   // Grabs user input
   var trainNum = $("#trainNum-input").val().trim();
@@ -47,6 +47,8 @@ $("#add-trainSchedule-btn").on("click", function(event) {
   $("#firstTrainTime-input").val("");
   // $("#frequency-input").val("");
 
+  return false;
+
 });
 
 // 3. Create Firebase event for adding train schedule to the database and a row in the html when a user adds an entry
@@ -78,7 +80,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   
   // Add each train's data into the table
   $("#train-table > tbody")
-    .append($("<tr>").data("id", childSnapshot.key)
+    .append($("<tr>").data('id', childSnapshot.key)
       .append($("<td>").text(trainName))
       .append($("<td>" + trainDest + "</td>"))
       .append($("<td>" + trainRate + "</td>"))
@@ -89,15 +91,28 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
       ));
 });
 
-$("body").on("click", ".remove-train", function() {
-     $(this).closest("tr").remove();
-     database.ref($(this).data("id")).remove(); // use id on create, append to button
+// Remove Train button
+$("body").on("click", ".remove-train", function(event) {
+    event.preventDefault()
+
+    $(this).closest('tr').remove();
+    database.ref($(this).data('id')).remove(); // use id on create, append to button
+    console.log($(this).data('id'));
 });
 
+// $(document).on("click", ".delete", function(e){
+//     e.preventDefault()
+//     var buttonId = $(this).attr("data-movie-id");
+//     $(this).closest('tr').remove();
+//     database.ref("/movies/"+buttonId).remove();
+// });
+
+// Refreshes entire page in specified time
 setTimeout(function () { 
   location.reload();
 }, 60 * 1000);
 
+// Shows current time in the jumbotron
 function displayCurrentTime() {
   var currentTime = moment().format("hh:mm A");
   $("#currentTime").html(currentTime);
