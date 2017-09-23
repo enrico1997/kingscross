@@ -93,3 +93,19 @@ $("body").on("click", ".remove-train", function() {
      $(this).closest("tr").remove();
      database.ref($(this).data("id")).remove(); // use id on create, append to button
 });
+
+setTimeout(function () { 
+  location.reload();
+}, 60 * 1000);
+
+function displayCurrentTime() {
+  var currentTime = moment().format("hh:mm A");
+  $("#currentTime").html(currentTime);
+}
+
+// Main Process
+// *****************************************
+$(document).ready(function() {
+  displayCurrentTime();
+  setInterval(displayCurrentTime, 10000);
+});
